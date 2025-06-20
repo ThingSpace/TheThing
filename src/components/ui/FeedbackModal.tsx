@@ -56,7 +56,7 @@ export const FeedbackModal = () => {
 
 	return (
 		<motion.div
-			className="no-select fixed top-0 left-0 flex min-h-screen w-screen items-center justify-center font-spacemono"
+			className="no-select fixed left-0 top-0 flex min-h-screen w-screen items-center justify-center font-spacemono"
 			initial={FeedbackModalAnimations.hidden}
 			animate={FeedbackModalAnimations.visible}
 			exit={FeedbackModalAnimations.hidden}

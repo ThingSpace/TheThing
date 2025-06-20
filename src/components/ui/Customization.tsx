@@ -53,7 +53,7 @@ export const Customization = () => {
 
 	return (
 		<motion.div
-			className="absolute top-0 left-0 z-[999] flex min-h-screen w-screen flex-col bg-white p-10"
+			className="absolute left-0 top-0 z-[999] flex min-h-screen w-screen flex-col bg-white p-10"
 			initial={CustomizationAnimations.hidden}
 			animate={CustomizationAnimations.visible}
 			exit={CustomizationAnimations.hidden}
@@ -81,7 +81,7 @@ export const Customization = () => {
 						key={i}
 						className={
 							`flex h-[150px] w-[300px] cursor-pointer flex-col border-2 hover:border-black ` +
-							(selectedTheme === i ? 'border-black ' : 'border-gray-300 ') +
+							(selectedTheme === i ? 'border-black' : 'border-gray-300') +
 							getTheme(i)
 						}
 						onClick={() => {

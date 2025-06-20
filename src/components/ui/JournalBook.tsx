@@ -60,14 +60,10 @@ export const JournalBook = ({ journal, type }: JournalBookProps) => {
 						{journal.title.length > 25 ? `${journal.title.substring(0, 25)}...` : journal.title}
 					</h1>
 					<div className="mt-2 w-fit text-white">
-						{journal.isPublic ? (
-							<h1 className=" bg-pink-600 p-2">Public</h1>
-						) : (
-							<h1 className="bg-black p-2">Private</h1>
-						)}
+						{journal.isPublic ? <h1 className="bg-pink-600 p-2">Public</h1> : <h1 className="bg-black p-2">Private</h1>}
 					</div>
 				</div>
-				<h4 className=" text-sm text-gray-600">{formatDate(journal.createdAt)}</h4>
+				<h4 className="text-sm text-gray-600">{formatDate(journal.createdAt)}</h4>
 			</div>
 		</motion.li>
 	);

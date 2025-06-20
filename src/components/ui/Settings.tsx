@@ -120,7 +120,7 @@ export const Settings = () => {
 
 	return (
 		<motion.div
-			className="absolute top-0 left-0 z-[998] flex min-h-screen w-screen flex-col items-center justify-center bg-white p-10"
+			className="absolute left-0 top-0 z-[998] flex min-h-screen w-screen flex-col items-center justify-center bg-white p-10"
 			initial={SettingsAnimations.hidden}
 			animate={SettingsAnimations.visible}
 			exit={SettingsAnimations.hidden}

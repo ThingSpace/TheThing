@@ -174,7 +174,7 @@ export const EntryModal = () => {
 
 	return (
 		<motion.div
-			className="font-monospace z-998 absolute top-0 left-0 z-[997] flex min-h-screen w-screen flex-col items-center overflow-y-auto bg-white p-10 text-black"
+			className="font-monospace z-998 absolute left-0 top-0 z-[997] flex min-h-screen w-screen flex-col items-center overflow-y-auto bg-white p-10 text-black"
 			initial={EntryModalAnimations.hidden}
 			animate={EntryModalAnimations.visible}
 			exit={EntryModalAnimations.hidden}
@@ -230,7 +230,7 @@ export const EntryModal = () => {
 			{
 				// This is where the parsing and editing logic would go!!
 				entryType === 'view' ? (
-					<div className="flex h-full max-w-[600px] flex-col ">
+					<div className="flex h-full max-w-[600px] flex-col">
 						<TextareaAutosize
 							className="flex w-full resize-none border-none text-4xl font-bold text-black underline outline-none focus:border-none focus:ring-white"
 							placeholder="Today was a crazy day!"
@@ -249,7 +249,7 @@ export const EntryModal = () => {
 						/>
 					</div>
 				) : entryType === 'edit' ? (
-					<div className="flex h-full max-w-[600px] flex-col ">
+					<div className="flex h-full max-w-[600px] flex-col">
 						<TextareaAutosize
 							className="flex w-full resize-none border-none text-4xl font-bold text-black underline outline-none focus:border-none focus:ring-white"
 							placeholder="Today was a crazy day!"

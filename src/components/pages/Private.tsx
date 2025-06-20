@@ -19,7 +19,6 @@ import { JournalBook } from '@components/ui/JournalBook';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 export const Private: React.FC = () => {
-
 	const [, setSelectedNote] = useAtom(selectedNoteAtom);
 	const [, setModalType] = useAtom(noteModal);
 	const [, setShowModal] = useAtom(showModal);
@@ -28,7 +27,7 @@ export const Private: React.FC = () => {
 	const [, setShowToast] = useAtom(showToastAtom);
 
 	// Atoms
-	const [user,] = useAtom(userInfo);
+	const [user] = useAtom(userInfo);
 
 	// TRPC
 	const deleteNote = trpc.post.delete.useMutation();
@@ -63,12 +62,12 @@ export const Private: React.FC = () => {
 					{allPostsData.status === 'success' && allPostsData.data !== undefined ? (
 						allPostsData.data.posts.length > 0 ? (
 							<ul className="no-select no-scrollbar flex flex-grow snap-x snap-mandatory flex-row overflow-x-auto">
-								<ScrollContainer className=" flex flex-row">
+								<ScrollContainer className="flex flex-row">
 									{allPostsData.data.posts.map((note) => {
 										return (
 											<motion.li
 												key={note.id}
-												className={`mx-5 mt-5 flex min-h-[200px] min-w-[300px] cursor-pointer snap-center flex-col justify-evenly border-2 bg-white p-5 transition-all hover:border-black `}
+												className={`mx-5 mt-5 flex min-h-[200px] min-w-[300px] cursor-pointer snap-center flex-col justify-evenly border-2 bg-white p-5 transition-all hover:border-black`}
 												layout
 												initial={{ opacity: 0 }}
 												animate={{ opacity: 1 }}
@@ -77,12 +76,12 @@ export const Private: React.FC = () => {
 												<div className="my-3 flex flex-col">
 													{note.isPublished ? (
 														<div className="flex flex-row text-pink-600">
-															<BiLockOpenAlt className="mx-2 h-6 w-6 " />
+															<BiLockOpenAlt className="mx-2 h-6 w-6" />
 															<p className="text-xl font-semibold">Public</p>
 														</div>
 													) : (
 														<div className="flex flex-row text-gray-600">
-															<BiLockAlt className="mx-2 h-6 w-6 " />
+															<BiLockAlt className="mx-2 h-6 w-6" />
 															<p className="text-xl font-semibold">Private</p>
 														</div>
 													)}
@@ -94,11 +93,11 @@ export const Private: React.FC = () => {
 																	day: '2-digit',
 																	hour: 'numeric',
 																	minute: 'numeric',
-															  }).format(new Date(note.at))
+																}).format(new Date(note.at))
 															: 'Sometime ago.'}
 													</h1>
 												</div>
-												<h6 className="whitespace-normal break-all	">
+												<h6 className="whitespace-normal break-all">
 													{note.text.length > 25 ? `${note.text.substring(0, 25)}...` : note.text}
 												</h6>
 												<div className="mt-2 flex w-full flex-row justify-start">
@@ -135,14 +134,14 @@ export const Private: React.FC = () => {
 							</ul>
 						) : (
 							<motion.li
-								className={`my-5 flex min-h-[200px] w-[300px] cursor-pointer snap-center flex-col justify-evenly border-2 bg-white p-5 transition-all hover:border-black `}
+								className={`my-5 flex min-h-[200px] w-[300px] cursor-pointer snap-center flex-col justify-evenly border-2 bg-white p-5 transition-all hover:border-black`}
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={{ duration: 0.5 }}>
 								<motion.div className="my-3 flex flex-col">
 									<div className="flex flex-row text-pink-600">
-										<BiLockOpenAlt className="mx-2 h-6 w-6 " />
+										<BiLockOpenAlt className="mx-2 h-6 w-6" />
 										<p className="text-xl font-semibold">For You!</p>
 									</div>
 									<h1 className="mx-2 flex text-sm text-gray-700">Sometime ago...</h1>
@@ -197,10 +196,10 @@ export const Private: React.FC = () => {
 												No Journals
 											</h1>
 											<div className="mt-2 w-fit">
-												<h1 className=" bg-pink-600 p-2 text-white">Create One?</h1>
+												<h1 className="bg-pink-600 p-2 text-white">Create One?</h1>
 											</div>
 										</div>
-										<h4 className=" text-sm text-gray-600">Hey! Click the Plus icon.</h4>
+										<h4 className="text-sm text-gray-600">Hey! Click the Plus icon.</h4>
 									</div>
 								</motion.div>
 							)

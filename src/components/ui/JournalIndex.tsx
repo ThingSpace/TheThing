@@ -78,14 +78,14 @@ export const JournalIndex = () => {
 
 	return (
 		<motion.div
-			className="absolute top-0 left-0 z-[997] flex min-h-screen w-screen items-center justify-center bg-black font-spacemono"
+			className="absolute left-0 top-0 z-[997] flex min-h-screen w-screen items-center justify-center bg-black font-spacemono"
 			initial={JournalIndexAnimation.hidden}
 			animate={JournalIndexAnimation.visible}
 			exit={JournalIndexAnimation.hidden}
 			transition={{
 				duration: 0.5,
 			}}>
-			<div className="absolute top-5 right-5 flex flex-row gap-5">
+			<div className="absolute right-5 top-5 flex flex-row gap-5">
 				{user.id === selectedJournal?.userId ? (
 					<Button
 						type="button"

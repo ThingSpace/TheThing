@@ -56,7 +56,7 @@ export const AddJournalBox = () => {
 
 	return (
 		<motion.div
-			className="fixed top-[50%] left-[50%] flex min-h-[300px] w-auto -translate-x-[50%] -translate-y-[50%] bg-white p-10"
+			className="fixed left-[50%] top-[50%] flex min-h-[300px] w-auto -translate-x-[50%] -translate-y-[50%] bg-white p-10"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}

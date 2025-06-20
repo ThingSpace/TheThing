@@ -35,7 +35,7 @@ export const NoteModal = () => {
 
 	// Add Properties
 	const [text, setText] = React.useState(selectedNote?.text ?? '');
-	const [isNotePrivate, setIsNotePrivate] = React.useState(!selectedNote?.isPublished ?? false);
+	const [isNotePrivate, setIsNotePrivate] = React.useState(!selectedNote?.isPublished);
 
 	const createNoteMutation = trpc.post.create.useMutation();
 	const updateNoteMutation = trpc.post.edit.useMutation();
@@ -97,15 +97,15 @@ export const NoteModal = () => {
 
 	return (
 		<motion.div
-			className="font-monospace fixed top-0 left-0 z-[998] flex h-screen w-screen bg-white text-black"
+			className="font-monospace fixed left-0 top-0 z-[998] flex h-screen w-screen bg-white text-black"
 			initial={{ y: '-100%' }}
 			animate={{ y: 0 }}
 			exit={{ y: '-100%' }}
 			transition={{ duration: 0.5 }}>
 			{
-				<div className="fixed top-0 left-0 flex h-3 w-screen">
+				<div className="fixed left-0 top-0 flex h-3 w-screen">
 					<span
-						className="transition-all duration-300 "
+						className="transition-all duration-300"
 						style={{
 							backgroundColor: '#000000',
 							width: `${(text.length / 3000) * 100}%`,
@@ -146,7 +146,7 @@ export const NoteModal = () => {
 								setIsNotePrivate(!isNotePrivate);
 							}}>
 							{isNotePrivate ? (
-								<BiLockAlt className="h-6 w-6 text-red-600 " />
+								<BiLockAlt className="h-6 w-6 text-red-600" />
 							) : (
 								<BiLockOpenAlt className="h-6 w-6 text-green-600" />
 							)}

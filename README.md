@@ -8,21 +8,21 @@ A Thing is an open-source platform designed to provide a safe, secure, and anony
 
 In a world where mental health struggles are common and personal experiences often go unspoken, A Thing aims to provide a voice. It's built on the belief that everyone deserves a space to share their thoughts and feelings without judgment. Key features include:
 
--   **Private & Public Notes:** Write personal notes or share them publicly to connect with a wider community.
--   **Journaling:** Create journals and entries, with options for public or private visibility.
--   **Customization:** Personalize your experience with various themes for both the application and your journals.
--   **Type-Safety:** Built on the T3 Stack, ensuring end-to-end type safety for robust and reliable development.
+- **Private & Public Notes:** Write personal notes or share them publicly to connect with a wider community.
+- **Journaling:** Create journals and entries, with options for public or private visibility.
+- **Customization:** Personalize your experience with various themes for both the application and your journals.
+- **Type-Safety:** Built on the T3 Stack, ensuring end-to-end type safety for robust and reliable development.
 
 ## Architecture
 
 A Thing is built on top of the [T3 Stack](https://create.t3.gg/). The T3 Stack is a modern web development stack that emphasizes type-safety, performance, and developer experience. It includes:
 
--   **Next.js:** A React framework for building server-rendered React applications with features like routing, API routes, and optimized performance.
--   **TypeScript:** A superset of JavaScript that adds static typing, enabling end-to-end type safety throughout the application. This is crucial for catching errors early and improving code maintainability.
--   **Tailwind CSS:** A utility-first CSS framework that allows for rapid UI development by composing classes directly in your JSX.
--   **tRPC:** A type-safe RPC (Remote Procedure Call) framework that allows you to build end-to-end type-safe APIs without the need for GraphQL or REST. It enables seamless communication between your Next.js frontend and backend.
--   **NextAuth.js:** A flexible authentication library for Next.js applications, providing support for various authentication providers and strategies.
--   **Prisma:** A next-generation ORM (Object-Relational Mapper) that simplifies database access and management with a type-safe API.
+- **Next.js:** A React framework for building server-rendered React applications with features like routing, API routes, and optimized performance.
+- **TypeScript:** A superset of JavaScript that adds static typing, enabling end-to-end type safety throughout the application. This is crucial for catching errors early and improving code maintainability.
+- **Tailwind CSS:** A utility-first CSS framework that allows for rapid UI development by composing classes directly in your JSX.
+- **tRPC:** A type-safe RPC (Remote Procedure Call) framework that allows you to build end-to-end type-safe APIs without the need for GraphQL or REST. It enables seamless communication between your Next.js frontend and backend.
+- **NextAuth.js:** A flexible authentication library for Next.js applications, providing support for various authentication providers and strategies.
+- **Prisma:** A next-generation ORM (Object-Relational Mapper) that simplifies database access and management with a type-safe API.
 
 ## Getting Started
 
@@ -32,9 +32,9 @@ To run A Thing locally, follow these steps:
 
 Make sure you have the following installed:
 
--   **Node.js:** (LTS version recommended)
--   **Yarn:** A fast, reliable, and secure dependency management tool for JavaScript.
--   **Git:** For cloning the repository.
+- **Node.js:** (LTS version recommended)
+- **Yarn:** A fast, reliable, and secure dependency management tool for JavaScript.
+- **Git:** For cloning the repository.
 
 ### Environment Variables
 
@@ -76,13 +76,13 @@ The application should now be running on `http://localhost:3000`.
 
 Here's a quick overview of the custom commands available in `package.json`:
 
--   `yarn run dev` - Runs the development server
+- `yarn run dev` - Runs the development server
 - `yarn run build` - Builds the project. I've added `prisma migrate deploy` to deploy the database migrations before the build starts just to be sure in the prod/dev that my migrations are deployed. You can remove it if you don't want to use Prisma.
 - `yarn run postinstall` - Runs the `prisma generate` command after the `yarn install` command. This is to ensure that the Prisma Client is generated after the install command is run. You can also remove this if you don't want to use Prisma or run `npx prisma generate` after the `yarn install` command which is the same thing.
 - `yarn run lint` - Runs ESLint on the project.
 - `yarn run start` - Runs the production server. This is the command that is run on the server. It runs the `yarn run build` command before starting the server.
 - `yarn run dev:migrate:postgres` - Runs the `prisma migrate dev` command. This is to ensure that the migrations are deployed in the development environment (NOT PRODUCTION; REFER TO `prisma migrate deploy`).
--   `yarn run dev:studio` - Runs the Prisma Studio (with the development database from `.env.devlopment`).
+- `yarn run dev:studio` - Runs the Prisma Studio (with the development database from `.env.devlopment`).
 
 ## Contributing
 

@@ -5,9 +5,9 @@ import { atom } from 'jotai';
 import { type Note, type ShortNote, type ToastIntent, type User } from './client.typing';
 
 export const userInfo = atom<User>({
-    id: '',
-    username: '',
-    styling: 0,
+	id: '',
+	username: '',
+	styling: 0,
 });
 
 // Menu
@@ -58,6 +58,5 @@ export const showSettingsModalAtom = atom<boolean>(false);
 export const showConfirmDialogAtom = atom<boolean>(false);
 export const confirmDialogMessageAtom = atom<string>('');
 export const confirmDialogStateAtom = atom<boolean>(false);
-
 
 // --todo-- maybe i could refactor this into a single global primitive that could be reused. (ignore this comment)

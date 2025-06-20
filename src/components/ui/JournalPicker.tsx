@@ -43,14 +43,14 @@ export const JournalPicker = () => {
 
 	return (
 		<motion.div
-			className="absolute top-0 left-0 z-[998] flex min-h-screen w-screen items-center justify-center bg-white"
+			className="absolute left-0 top-0 z-[998] flex min-h-screen w-screen items-center justify-center bg-white"
 			initial={JournalPickerAnimations.hidden}
 			animate={JournalPickerAnimations.visible}
 			exit={JournalPickerAnimations.hidden}
 			transition={{
 				duration: 0.5,
 			}}>
-			<div className="absolute top-5 right-5">
+			<div className="absolute right-5 top-5">
 				<Button
 					type="button"
 					onClick={() => {

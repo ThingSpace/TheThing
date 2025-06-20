@@ -10,7 +10,7 @@ export const Confirm = () => {
 
 	return (
 		<motion.div
-			className="fixed top-[50%] left-[50%] z-[1000] h-fit w-[350px] -translate-x-[50%] -translate-y-[50%] border-2 border-gray-300 bg-white p-5 lg:p-10"
+			className="fixed left-[50%] top-[50%] z-[1000] h-fit w-[350px] -translate-x-[50%] -translate-y-[50%] border-2 border-gray-300 bg-white p-5 lg:p-10"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}>
