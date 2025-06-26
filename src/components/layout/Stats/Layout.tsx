@@ -51,10 +51,10 @@ const StatsPage = ({ stats }: { stats: StatisticsProps }) => {
 					</div>
 				</div>
 			</div>
-			<div className="fixed bottom-5 flex w-full items-center justify-center bg-white font-normal">
-				<p className="flex text-center">
+			<div className="mt-8 flex w-full items-center justify-center">
+				<div className="rounded-md bg-gray-100 px-4 py-2 text-center text-sm text-gray-700 border border-gray-200 shadow-sm max-w-xl">
 					Note: The data is precise and is calculated directly off the database every 30 minutes.
-				</p>
+				</div>
 			</div>
 		</motion.div>
 	);

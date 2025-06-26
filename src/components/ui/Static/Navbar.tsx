@@ -27,7 +27,13 @@ export function Navbar() {
 			exit={{ y: -100 }}
 			transition={{ duration: 0.5 }}>
 			<div className="flex h-[60px] w-[95%] flex-row items-center justify-between rounded-full px-5">
-				<div className="flex font-semibold">@{res.data?.username}</div>
+				<div className="flex font-semibold">
+					{res.isLoading ? (
+						<span className="animate-pulse text-gray-400">Loading...</span>
+					) : (
+						<>@{res.data?.username}</>
+					)}
+				</div>
 				<div className="no-select hidden flex-row divide-x-2 divide-gray-300 lg:flex">
 					<button
 						className="duration-400 flex px-5 hover:font-semibold"

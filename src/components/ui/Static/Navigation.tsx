@@ -32,7 +32,8 @@ const publicItems = [
 ];
 
 const authenticatedItems = [
-	{ href: '/app', label: 'My Space', icon: <Home className="h-5 w-5" /> },
+	{ href: '/app', label: 'Space', icon: <Home className="h-5 w-5" /> },
+	{ href: '/profile', label: 'Profile', icon: <UserPlus className="h-5 w-5" /> },
 	{ href: '/app/settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> },
 ];
 
@@ -50,9 +51,9 @@ const legalItems = [
 
 const getTimeBasedGreeting = () => {
 	const hour = new Date().getHours();
-	if (hour < 12) return 'Good Morning';
-	if (hour < 17) return 'Good Afternoon';
-	return 'Good Evening';
+	if (hour < 12) return 'Good Morning 👋';
+	if (hour < 17) return 'Good Afternoon 👋';
+	return 'Good Evening 👋';
 };
 
 const encouragingMessages = [
@@ -66,6 +67,17 @@ const encouragingMessages = [
 	'Take it one day at a time',
 	'Your story is important',
 	'Remember to breathe',
+	'You are enough, just as you are',
+	'Progress, not perfection',
+	'Small steps count',
+	'You make a difference',
+	'It’s okay to rest',
+	'Be gentle with yourself',
+	'You’re stronger than you think',
+	'Your feelings are valid',
+	'You belong here',
+	'Let today be a fresh start',
+	'You are not your thoughts',
 ];
 
 export const Navigation = () => {
@@ -76,11 +88,16 @@ export const Navigation = () => {
 	const router = useRouter();
 	const pathname = usePathname();
 
+	// Pick a new message every time the menu is opened
 	React.useEffect(() => {
-		const message =
-			encouragingMessages.length > 0 ? encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)] : '';
-		setRandomMessage(message ?? '');
-	}, []);
+		if (isOpen) {
+			const message =
+				encouragingMessages.length > 0
+					? encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)]
+					: '';
+			setRandomMessage(message ?? '');
+		}
+	}, [isOpen]);
 
 	// Query user data - will return null if not authenticated
 	const { data: user, isLoading } = trpc.user.me.useQuery(undefined, {
@@ -142,8 +159,13 @@ export const Navigation = () => {
 											<img src="/logo.png" alt="A Thing Logo" className="h-8 w-8" />
 											<span className="text-xl font-bold">A Thing</span>
 										</motion.div>
-										<h2 className="border-l-2 pl-2 text-xl font-bold">{user ? getTimeBasedGreeting() : 'Welcome'}</h2>
+										
 									</div>
+									{user && (
+										<p className="text-sm text-gray-600">
+											{getTimeBasedGreeting()}, friend!
+										</p>
+									)}
 									{user && randomMessage && <p className="text-sm text-gray-600">{randomMessage}</p>}
 								</div>
 								<button

@@ -216,12 +216,43 @@ export const userRouter = router({
 				where: {
 					id: ctx.session,
 				},
-			})) as User;
+				include: {
+					posts: {
+						select: {
+							id: true,
+							text: true,
+							isFlagged: true,
+							flagReason: true,
+							needsReview: true,
+						}
+					}
+				}
+			})) as User & { posts: any[] };
+
+			const flaggedPosts = user.posts.filter(p => p.isFlagged);
+			const reviewPosts = user.posts.filter(p => p.needsReview);
+
+			// Check for self-harm/suicide in review reasons
+			const reviewReasons = reviewPosts.map(p => p.flagReason?.toLowerCase() || '');
+			const sensitiveKeywords = ['self-harm', 'suicide', 'self harm', 'self harm intentions'];
+			const hasSensitiveReview = reviewReasons.some(reason =>
+				sensitiveKeywords.some(keyword => reason.includes(keyword))
+			);
+
+			let sensitiveMessage: string | null = null;
+			if (hasSensitiveReview) {
+				sensitiveMessage =
+					"If you're struggling or feeling unsafe, please know you are not alone. Consider reaching out to someone you trust or a professional. And remember you DO matter!!";
+			}
 
 			return {
 				username: user.username,
 				id: user.id,
 				styling: user.styling,
+				createdAt: user.createdAt,
+				flaggedPosts,
+				reviewPosts,
+				sensitiveMessage,
 			};
 		} catch (err) {
 			throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'An error occurred.' });

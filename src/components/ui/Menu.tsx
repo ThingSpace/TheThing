@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { setCookie } from 'nookies';
 import { allowPagesDisplayAtom, currentPageAtom, menuOpenAtom, showSettingsModalAtom } from '@utils/store';
@@ -9,6 +9,7 @@ import {
 	Home,
 	BookOpen,
 	Lock,
+    UserCircle,
 	Settings,
 	LogOut,
 	X,
@@ -130,6 +131,17 @@ export const Menu = () => {
 										className="flex w-full items-center gap-3 rounded-lg p-3 hover:bg-gray-100">
 										<Lock className="h-5 w-5" />
 										Private
+									</button>
+								</li>
+
+                                <li>
+									<button
+										onClick={() => {
+											redirect('/profile')
+										}}
+										className="flex w-full items-center gap-3 rounded-lg p-3 hover:bg-gray-100">
+										<UserCircle className="h-5 w-5" />
+										Profile
 									</button>
 								</li>
 

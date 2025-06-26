@@ -44,7 +44,7 @@ export const FeedbackModal = () => {
 				text,
 			});
 			setToastIntent('success');
-			setToastMessage('Thank You! You voice is now heard.');
+			setToastMessage('Thank You! Your voice is now heard.');
 			setDisplayToast(true);
 			setShowFeedback(false);
 		} catch (e) {
@@ -56,17 +56,18 @@ export const FeedbackModal = () => {
 
 	return (
 		<motion.div
-			className="no-select fixed left-0 top-0 flex min-h-screen w-screen items-center justify-center font-spacemono"
+			className="fixed left-0 top-0 z-[1200] flex min-h-screen w-screen items-center justify-center font-spacemono backdrop-blur-md bg-black/20"
 			initial={FeedbackModalAnimations.hidden}
 			animate={FeedbackModalAnimations.visible}
 			exit={FeedbackModalAnimations.hidden}
-			transition={FeedbackModalAnimations.transition}>
-			<div className="flex min-h-[350px] w-[300px] flex-col items-center justify-center border-none border-gray-300 bg-white">
+			transition={FeedbackModalAnimations.transition}
+		>
+			<div className="flex min-h-[350px] w-[340px] flex-col items-center justify-center rounded-xl border-2 border-gray-300 bg-white/95 shadow-2xl">
 				<div className="mb-2 flex">
-					<BiUserVoice className="h-10 w-10" />
+					<BiUserVoice className="h-10 w-10 text-blue-600" />
 				</div>
-				<div className="my-2 flex flex-col justify-center">
-					<h1 className="text-center text-2xl font-semibold">Hear my Voice</h1>
+				<div className="my-2 flex flex-col justify-center w-full px-4">
+					<h1 className="text-center text-2xl font-semibold mb-2">Your opinion matters!</h1>
 					<TextareaAutosize
 						value={text}
 						onChange={(e) => {
@@ -79,13 +80,14 @@ export const FeedbackModal = () => {
 							}
 						}}
 						maxRows={6}
-						className="my-2 min-h-fit w-full resize-none border-none p-2 text-start placeholder:text-center focus:border-white focus:ring-0"
+						className="my-2 min-h-[100px] w-full resize-none rounded-lg border-2 border-black-400 bg-blue-50 p-3 text-base text-black placeholder:text-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all"
 						placeholder="Want a cool new feature? Found a bug? Let me know!"
+						autoFocus
 					/>
 				</div>
 				<div className="my-2 flex flex-row items-center justify-center gap-5">
 					<button
-						className="flex items-center justify-center rounded-full border-2 p-3 duration-200 hover:border-gray-400"
+						className="flex items-center justify-center rounded-full border-2 border-gray-300 bg-white p-3 duration-200 hover:border-gray-400"
 						onClick={() => {
 							setShowFeedback(false);
 						}}>
@@ -93,7 +95,7 @@ export const FeedbackModal = () => {
 					</button>
 
 					<button
-						className="flex items-center justify-center rounded-full border-2 p-3 duration-200 hover:border-gray-400"
+						className="flex items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500 p-3 text-white duration-200 hover:bg-blue-600"
 						onClick={() => {
 							handleFeedbackSubmit();
 						}}>

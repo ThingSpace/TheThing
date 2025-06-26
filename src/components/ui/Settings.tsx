@@ -19,6 +19,7 @@ import { handleError } from '@utils/client.util';
 import { IoSave } from 'react-icons/io5';
 import React from 'react';
 import { setCookie } from 'nookies';
+import { THEME_CONFIG } from '@utils/PatternController';
 
 const SettingsAnimations = {
 	hidden: {
@@ -52,6 +53,25 @@ export const Settings = () => {
 	const updateThemeMutation = trpc.user.update.useMutation();
 	const deleteAccountMutation = trpc.user.delete.useMutation();
 	const utils = trpc.useContext();
+	const { data: user } = trpc.user.me.useQuery(undefined, { refetchOnWindowFocus: false });
+
+	// Get all background patterns from THEME_CONFIG
+	const backgrounds = Object.entries(THEME_CONFIG);
+
+	function getBgClassOrImage(pattern: string) {
+		// If pattern starts with 'bg-', treat as Tailwind class, else treat as image url
+		if (pattern.startsWith('bg-')) {
+			return { className: pattern, style: undefined };
+		}
+		return {
+			className: '',
+			style: {
+				backgroundImage: `url(${pattern})`,
+				backgroundSize: 'cover',
+				backgroundPosition: 'center',
+			},
+		};
+	}
 
 	async function handleClose() {
 		setAllowPagesDisplay(true);
@@ -154,7 +174,44 @@ export const Settings = () => {
 			</div>
 			<div className="flex min-w-fit flex-col items-center justify-between">
 				<div className="mb-5 w-full items-start border-2 border-gray-300 p-10">
-					<h1 className="text-2xl font-bold">Theme</h1>
+					<h1 className="text-2xl font-bold">Background</h1>
+					<div className="my-4 grid grid-cols-3 gap-4 sm:flex">
+						{backgrounds.map(([key, pattern], idx) => {
+							const { className, style } = getBgClassOrImage(pattern as string);
+							const isActive = user?.styling === idx;
+							const isSelected = selectedCustomization === idx;
+							return (
+								<div
+									key={key}
+									className={`relative flex flex-col items-center justify-center rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+										isSelected
+											? ''
+											: isActive
+												? 'border-green-600 ring-2 ring-green-600'
+												: 'border-gray-200 hover:border-black'
+									} ${className}`}
+									style={{
+										width: 80,
+										height: 80,
+										...(style || {}),
+									}}
+									onClick={() => {
+										setSelectedCustomization(idx);
+										setHasSwitchedTheme(true);
+									}}>
+									<span className="absolute left-1 top-1 z-10 rounded bg-white bg-opacity-80 px-2 py-0.5 text-xs font-bold text-black">
+										{idx + 1}
+									</span>
+									{isSelected && (
+										<span className="absolute right-1 top-1 z-10 text-black-600 font-bold">●</span>
+									)}
+									{!isSelected && isActive && (
+										<span className="absolute right-1 top-1 z-10 text-green-600 font-bold">●</span>
+									)}
+								</div>
+							);
+						})}
+					</div>
 					<div className="my-2 flex flex-col items-center justify-center">
 						<Button
 							styles="opposite"
@@ -163,7 +220,7 @@ export const Settings = () => {
 								setShowCustomizationModalAtom(true);
 								setHasSwitchedTheme(true);
 							}}>
-							Background
+							View a FullScreen Preview
 						</Button>
 					</div>
 				</div>

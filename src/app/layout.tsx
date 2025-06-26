@@ -4,7 +4,9 @@ import { Navigation } from '@components/ui/Static/Navigation';
 import '../styles/globals.css';
 import Providers from '@components/Providers';
 import RandomTitle from '@components/RandomTitle';
+import { ClientSuspense } from '@components/ui/ClientSuspense';
 
+// Fix duplicate/interleaved declarations and syntax errors
 const inter = Inter({ subsets: ['latin'] });
 
 const titleVariants = [
@@ -51,7 +53,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				<RandomTitle />
 				<Providers>
 					<Navigation />
-					<main>{children}</main>
+					<ClientSuspense fallback={
+						<div className="flex min-h-screen w-screen items-center justify-center text-lg font-mono">Loading...</div>
+					}>
+						<main>{children}</main>
+					</ClientSuspense>
 				</Providers>
 			</body>
 		</html>

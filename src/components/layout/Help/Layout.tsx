@@ -2,6 +2,7 @@
 import React from 'react';
 import { type NextPage } from 'next';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 import { useRouter } from 'next/navigation';
 import { IoArrowBack, IoSearch } from 'react-icons/io5';
@@ -91,11 +92,13 @@ const FAQData = {
 			},
 			{
 				q: "The site isn't loading properly",
-				a: 'Try clearing your browser cache and cookies. If issues persist, check our status page or report the problem on GitHub.',
+				a: 'Try clearing your browser cache and cookies. If issues persist, check our [status page](https://athing.instatus.com) or report the problem on GitHub.',
 			},
 			{
 				q: 'Can I reset my password if I still have my username?',
-				a: 'Yes. Please email support@athing.space with your username and a new bcrypt-hashed password generated from https://bcrypt-generator.com/. Our team will manually update your password.',
+				a: `Yes. If you have access to your username, you can reset your password by visiting the [Account Recovery](/recover) page and following the instructions.
+
+Note: You will be required to answer some skill testing questions about your account to verify ownership.`,
 			},
 		],
 	},
@@ -125,6 +128,105 @@ const FAQData = {
 		],
 	},
 };
+
+// Helper to render markdown-style [text](url) links in FAQ answers
+function renderMarkdownLinks(text: string) {
+	const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+	const parts: (string | JSX.Element)[] = [];
+	let lastIndex = 0;
+	let match: RegExpExecArray | null;
+
+	while ((match = regex.exec(text)) !== null) {
+		if (match.index > lastIndex) {
+			parts.push(text.slice(lastIndex, match.index));
+		}
+		parts.push(
+			<Link
+				key={match[2] + match.index}
+				href={match[2]}
+				className="text-blue-600 underline hover:text-blue-800"
+				rel="noopener noreferrer"
+			>
+				{match[1]}
+			</Link>
+		);
+		lastIndex = regex.lastIndex;
+	}
+	if (lastIndex < text.length) {
+		parts.push(text.slice(lastIndex));
+	}
+	return parts;
+}
+
+// Helper to render paragraphs, notes/alerts, and steps
+function renderAnswerWithNotes(answer: string) {
+	const blocks = answer.split(/\n{2,}/);
+	return blocks.map((block, idx) => {
+		const trimmed = block.trim();
+
+		// Render Alert
+		if (trimmed.startsWith('Alert:')) {
+			return (
+				<div
+					key={idx}
+					className="my-2 rounded-md border-l-4 border-red-500 bg-red-50 px-4 py-2 text-sm text-red-900"
+				>
+					<strong>Alert:</strong> {renderMarkdownLinks(trimmed.replace(/^Alert:\s*/, ''))}
+				</div>
+			);
+		}
+
+		// Render Note
+		if (trimmed.startsWith('Note:')) {
+			return (
+				<div
+					key={idx}
+					className="my-2 rounded-md border-l-4 border-blue-400 bg-blue-50 px-4 py-2 text-sm text-blue-900"
+				>
+					<strong>Note:</strong> {renderMarkdownLinks(trimmed.replace(/^Note:\s*/, ''))}
+				</div>
+			);
+		}
+
+		// Render Steps (numbered list)
+		const lines = trimmed.split('\n').map(l => l.trim()).filter(Boolean);
+		// If the first line is not a step, but subsequent lines are, render the first line as a paragraph and the rest as steps
+		if (
+			lines.length > 1 &&
+			!/^\d+\.\s+/.test(lines[0]) &&
+			lines.slice(1).every(line => /^\d+\.\s+/.test(line))
+		) {
+			return (
+				<React.Fragment key={idx}>
+					<p className="font-normal text-gray-700">{renderMarkdownLinks(lines[0])}</p>
+					<ol className="my-2 ml-6 list-decimal text-gray-700">
+						{lines.slice(1).map((line, i) => (
+							<li key={i}>{renderMarkdownLinks(line.replace(/^\d+\.\s+/, ''))}</li>
+						))}
+					</ol>
+				</React.Fragment>
+			);
+		}
+		// If all lines are steps, render as a numbered list
+		const isNumberedList = lines.length > 1 && lines.every(line => /^\d+\.\s+/.test(line));
+		if (isNumberedList) {
+			return (
+				<ol key={idx} className="my-2 ml-6 list-decimal text-gray-700">
+					{lines.map((line, i) => (
+						<li key={i}>{renderMarkdownLinks(line.replace(/^\d+\.\s+/, ''))}</li>
+					))}
+				</ol>
+			);
+		}
+
+		// Default: paragraph
+		return (
+			<p key={idx} className="font-normal text-gray-700">
+				{renderMarkdownLinks(trimmed)}
+			</p>
+		);
+	});
+}
 
 const HelpPage: NextPage = () => {
 	const [searchTerm, setSearchTerm] = React.useState('');
@@ -183,7 +285,7 @@ const HelpPage: NextPage = () => {
 							{category.items.map((item, index) => (
 								<div key={index} className="flex flex-col gap-2">
 									<h3 className="text-lg font-semibold">{item.q}</h3>
-									<p className="font-normal text-gray-700">{item.a}</p>
+									{renderAnswerWithNotes(item.a)}
 								</div>
 							))}
 						</div>
@@ -194,8 +296,8 @@ const HelpPage: NextPage = () => {
 					<h2 className="text-2xl font-bold">Still Need Help?</h2>
 					<p className="font-normal">
 						Email us at{' '}
-						<a href="mailto:hey@athing.space" className="text-blue-600 underline hover:text-blue-800">
-							hey@athing.space
+						<a href="mailto:support@athing.space" className="text-blue-600 underline hover:text-blue-800">
+							support@athing.space
 						</a>{' '}
 						or reach out to us on{' '}
 						<a href="https://twitter.com/theathingapp" className="text-blue-600 underline hover:text-blue-800">

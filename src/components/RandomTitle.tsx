@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 
 const titleVariants = [
-  "we are with you",
-  "you are not alone",
-  "you got this",
-  "you are enough",
-  "just breathe",
+  "<3 we are with you",
+  "<3 you are not alone",
+  "<3 you are enough",
+  "<3 just breathe",
   "<3 You got this"
 ];
 

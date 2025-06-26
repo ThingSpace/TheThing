@@ -194,8 +194,9 @@ const SignupPage: NextPage = () => {
 						<h1 className="my-2 text-center text-4xl font-black text-red-600">Write It Down!</h1>
 						<p className="prose my-2 text-center">
 							Hey! <b className="text-black">please write down</b> your <b>Password</b> and your assigned Username:{' '}
-							<b className="text-black">{mutation.data?.username}</b>. There is no way to recover your password/account
-							if you forget it we do not store anything about you to identify you.
+							<b className="text-black">{mutation.data?.username}</b>. If you forget your password you can attempt to
+							recover your account <a href="/recover" className="underline">here</a>, but we do ask some skill testing
+							questions to ensure you are the rightful owner of the account. Please do not lose your password!!!!!!
 						</p>
 						<Button
 							styles="danger"

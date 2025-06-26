@@ -19,21 +19,26 @@ model User {
   acceptedRules Boolean    @default(false)
   acceptedTerms Boolean    @default(false)
   role          Role       @default(USER)
+  ApiKey        ApiKey[]
   comments      Comment[]
+  feedbacks     Feedback[]
   journals      Journal[]
   posts         Post[]
-  feedbacks     Feedback[]
 }
 
 model Post {
-  id          String    @id @unique @default(uuid())
-  text        String
-  at          DateTime? @default(now())
-  updatedAt   DateTime? @updatedAt
-  userId      String?
-  isPublished Boolean   @default(true)
-  User        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Comment     Comment[]
+  id               String    @id @unique @default(uuid())
+  text             String
+  at               DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
+  userId           String?
+  isPublished      Boolean   @default(true)
+  flagReason       String?
+  isFlagged        Boolean?  @default(false)
+  moderationScores Json?
+  needsReview      Boolean?  @default(false)
+  Comment          Comment[]
+  User             User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
@@ -47,26 +52,34 @@ model Comment {
 }
 
 model Journal {
-  id        String    @id @unique @default(uuid())
-  title     String
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
-  userId    String
-  styling   Int       @default(0)
-  isPublic  Boolean   @default(false)
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  entries   Entry[]
+  id               String    @id @unique @default(uuid())
+  title            String
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
+  userId           String
+  styling          Int       @default(0)
+  isPublic         Boolean   @default(false)
+  flagReason       String?
+  isFlagged        Boolean   @default(false)
+  moderationScores Json?
+  needsReview      Boolean?  @default(false)
+  entries          Entry[]
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Entry {
-  id        String    @id @unique @default(uuid())
-  title     String
-  text      String
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
-  authorId  String
-  journalId String
-  journal   Journal   @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  id               String    @id @unique @default(uuid())
+  title            String
+  text             String
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
+  authorId         String
+  journalId        String
+  flagReason       String?
+  isFlagged        Boolean?  @default(false)
+  moderationScores Json?
+  needsReview      Boolean?  @default(false)
+  journal          Journal   @relation(fields: [journalId], references: [id], onDelete: Cascade)
 }
 
 model Feedback {
@@ -75,7 +88,16 @@ model Feedback {
   createdAt DateTime? @default(now())
   updatedAt DateTime? @updatedAt
   authorId  String?
-  author    User?     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  author    User?     @relation(fields: [authorId], references: [id])
+}
+
+model ApiKey {
+  id        String   @id
+  key       String   @unique
+  adminId   String
+  createdAt DateTime @default(now())
+  thingyMod Boolean  @default(false)
+  User      User     @relation(fields: [adminId], references: [id], onDelete: Cascade)
 }
 
 enum Role {

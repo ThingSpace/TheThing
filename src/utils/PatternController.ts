@@ -12,7 +12,8 @@ export const THEME_CONFIG = {
 	10: 'bg-clouds-pattern',
 };
 
-// --todo-- write better theme logic
+// TODO: implement better theme logic
+// TODO: implement dark and light mode 
 
 function getTheme(index: number): string {
 	if (index > Object.keys(THEME_CONFIG).length - 1) return THEME_CONFIG[0];

@@ -172,6 +172,13 @@ const LoginPage: NextPage = () => {
 					<div
 						className="my-2 cursor-pointer place-self-center text-sm font-bold transition-all duration-300 hover:underline"
 						onClick={() => {
+							router.replace('/recover');
+						}}>
+						Recover Account
+					</div>
+					<div
+						className="my-2 cursor-pointer place-self-center text-sm font-bold transition-all duration-300 hover:underline"
+						onClick={() => {
 							router.replace('/auth/signup');
 						}}>
 						Signup
