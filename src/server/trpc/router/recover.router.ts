@@ -3,14 +3,11 @@ import { router, publicProcedure } from '../trpc';
 import { hashPassword } from '@utils/server.util';
 import { TRPCError } from '@trpc/server';
 
-// Skill questions based on available, meaningful, and hard-to-guess data
 const skillQuestions = [
 	'What month and year did you create your account?',
-	'What is the first word of your first journal entry title?',
-	'What is the first word of your most recent note?',
 	'What is the title of your first journal?',
-	'What is the first word of your oldest journal entry (if you have one)?',
-	'What theme number do you currently have set? (Enter a number from 1 to 10)',
+	'What theme number do you currently have set? (Enter a number from 0 to 10)',
+	'What is the first word of your most recent note?',
 ];
 
 export const recoverRouter = router({
@@ -28,8 +25,8 @@ export const recoverRouter = router({
 			const user = await ctx.prisma.user.findUnique({
 				where: { username: input.username },
 				include: {
-					journals: { orderBy: { createdAt: 'asc' }, take: 1 },
-					posts: { orderBy: { createdAt: 'desc' }, take: 1 },
+					journals: { orderBy: { id: 'asc' }, take: 1 },
+					posts: { orderBy: { id: 'desc' }, take: 1 },
 				},
 			});
 			if (!user) return { correct: false }
@@ -49,61 +46,43 @@ export const recoverRouter = router({
 				correct++;
 			}
 
-			// Q2: First word of first journal entry title
-			const firstJournalTitle = user.journals?.[0]?.title || '';
-			const expectedFirstJournalWord = firstJournalTitle.split(/\s+/)[0] || '';
+			// Q2: Title of first journal
+			const expectedJournalTitle = user.journals?.[0]?.title || '';
 			if (
 				input.answers[1] &&
-				expectedFirstJournalWord &&
-				input.answers[1].toLowerCase() === expectedFirstJournalWord.toLowerCase()
+				expectedJournalTitle &&
+				input.answers[1].toLowerCase() === expectedJournalTitle.toLowerCase()
 			) {
 				correct++;
 			}
 
-			// Q3: First word of most recent note
+			// Q3: Theme number (styling, 0-based, so 0-10)
+			const expectedTheme = typeof user.styling === 'number' ? user.styling.toString() : '';
+			const acceptedThemeAnswers = [
+				expectedTheme,
+				(user.styling + 1).toString(), // Accept both 0-based and 1-based answers
+			];
+			if (
+				input.answers[2] &&
+				expectedTheme &&
+				acceptedThemeAnswers.includes(input.answers[2].replace(/\D/g, ''))
+			) {
+				correct++;
+			}
+
+			// Q4: First word of most recent note
 			const mostRecentNote = user.posts?.[0]?.text || '';
 			const expectedFirstNoteWord = mostRecentNote.split(/\s+/)[0] || '';
 			if (
-				input.answers[2] &&
-				expectedFirstNoteWord &&
-				input.answers[2].toLowerCase() === expectedFirstNoteWord.toLowerCase()
-			) {
-				correct++;
-			}
-
-			// Q4: Title of first journal
-			const expectedJournalTitle = user.journals?.[0]?.title || '';
-			if (
 				input.answers[3] &&
-				expectedJournalTitle &&
-				input.answers[3].toLowerCase() === expectedJournalTitle.toLowerCase()
+				expectedFirstNoteWord &&
+				input.answers[3].toLowerCase() === expectedFirstNoteWord.toLowerCase()
 			) {
 				correct++;
 			}
 
-			// Q5: First word of oldest journal entry (if any)
-			const oldestJournalEntry = user.journals?.[0]?.entries?.[0]?.text || '';
-			const expectedFirstOldestEntryWord = oldestJournalEntry.split(/\s+/)[0] || '';
-			if (
-				input.answers[4] &&
-				expectedFirstOldestEntryWord &&
-				input.answers[4].toLowerCase() === expectedFirstOldestEntryWord.toLowerCase()
-			) {
-				correct++;
-			}
-
-			// Q6: Theme number (styling, 1-based)
-			const expectedTheme = typeof user.styling === 'number' ? (user.styling + 1).toString() : '';
-			if (
-				input.answers[5] &&
-				expectedTheme &&
-				input.answers[5].replace(/\D/g, '') === expectedTheme
-			) {
-				correct++;
-			}
-
-			// Require at least 3/6 correct for recovery
-			return { correct: correct >= 3 };
+			// Require at least 2/4 correct for recovery
+			return { correct: correct >= 2 };
 		}),
 	updatePassword: publicProcedure
 		.input(z.object({ username: z.string().trim(), password: z.string().min(8).max(100) }))

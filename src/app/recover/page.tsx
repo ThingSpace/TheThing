@@ -8,11 +8,9 @@ import { trpc } from '@utils/trpc';
 
 const skillQuestions = [
 	'What month and year did you create your account?',
-	'What is the first word of your first journal entry title?',
-	'What is the first word of your most recent note?',
 	'What is the title of your first journal?',
-	'What is the first word of your oldest journal entry (if you have one)?',
-	'What theme number do you currently have set? (Enter a number from 1 to 10)',
+	'What theme number do you currently have set? (Enter a number from 0 to 10)',
+	'What is the first word of your most recent note?',
 ];
 
 export default function RecoveryPage() {

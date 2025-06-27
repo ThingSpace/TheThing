@@ -54,7 +54,7 @@ export const ProfileLayout: React.FC<ProfileLayoutProps> = ({ user, onBack }) =>
 					<span className="font-semibold">Theme:</span>{' '}
 					<span>
 						{typeof user.styling === 'number'
-							? `#${user.styling + 1} (${user.styling})`
+							? `#${user.styling}`
 							: 'Default'}
 					</span>
 				</div>
