@@ -16,22 +16,22 @@ const securityHeaders = [
 		value: '1; mode=block',
 	},
 	{
-		key: 'X-Frame-Options', // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+		key: 'X-Frame-Options',
 		value: 'SAMEORIGIN',
 	},
 	{
-		key: 'X-Content-Type-Options', // Block the browser from trying to guess the MIME type.
+		key: 'X-Content-Type-Options',
 		value: 'nosniff',
 	},
 	{
 		key: 'Referrer-Policy',
-		value: 'strict-origin-when-cross-origin', // https://scotthelme.co.uk/a-new-security-header-referrer-policy/
+		value: 'strict-origin-when-cross-origin',
 	},
 ];
 
 /** @type {import("next").NextConfig} */
 const config = {
-	reactStrictMode: true,
+	reactStrictMode: false,
 	typescript: { ignoreBuildErrors: true },
 	eslint: { ignoreDuringBuilds: true },
 	async headers() {

@@ -1,0 +1,47 @@
+# Features & Enhancements TODO
+
+- [ ] Add search functionality for notes, journals, and users
+- [ ] Implement tagging and categorization for notes and journals
+- [ ] Add analytics dashboard for users (personal stats, streaks, etc)
+- [ ] Enable sharing of public journals/notes via unique links
+- [ ] Add notifications for comments, replies, and moderation actions
+- [ ] Implement scheduled reminders for journaling and goals
+- [ ] Add support for image/file attachments in journals and notes
+- [ ] Expand crisis resource database and localization
+- [ ] Add onboarding/tutorial flow for new users
+- [ ] Enable exporting data (notes, journals) as PDF/Markdown
+- [ ] Add more journaling templates and prompts
+- [ ] Integrate AI-powered suggestions for journaling and mood tracking
+- [ ] Add voice journaling and transcription
+- [ ] Implement anonymous peer support chat
+- [ ] Add gamification (badges, achievements, streaks)
+- [ ] Support multi-language/localization
+- [ ] Add calendar integration for reminders and journaling streaks
+- [ ] Implement advanced moderation tools for admins
+- [ ] Add public API for third-party integrations
+- [ ] Enable offline mode and PWA improvements
+- [ ] Add customizable journaling flows (gratitude, CBT, etc)
+- [ ] Add mood tracking and visualization
+- [ ] Implement user profile pages with anonymous avatars
+- [ ] Add comment/reaction system for public notes/journals
+- [ ] Add content warnings and moderation for sensitive topics
+- [ ] Integrate with third-party mental health resources
+- [ ] Add mood analysis and feedback (AI-powered)
+- [ ] Add automated moderation and content warnings (AI-powered)
+- [ ] Add end-to-end encryption for all private content
+- [ ] Add granular privacy controls for posts/journals
+- [ ] Add session management improvements
+- [ ] Add audit logging for sensitive actions
+- [ ] Add 2FA / enhanced authentication
+- [ ] Add open API for third-party integrations
+- [ ] Add optional analytics (privacy-respecting)
+- [ ] Add third-party mental health resources API integration
+- [ ] Add advanced search and filtering endpoints
+- [ ] Add backup and restore endpoints for user data
+- [ ] Add support for webhooks and event-driven actions
+- [ ] Add advanced moderation tools for admins
+- [ ] Add focus management in all dialogs
+- [ ] Add high-contrast and dyslexia-friendly modes
+- [ ] Add Storybook for UI components
+- [ ] Add end-to-end and integration tests
+- [ ] Add better error logging and monitoring (Sentry, LogRocket, etc.)

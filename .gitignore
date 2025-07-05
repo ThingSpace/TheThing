@@ -35,10 +35,19 @@ yarn-error.log*
 
 # vercel
 .vercel
+/.vscode/
 
 # typescript
 *.tsbuildinfo
 
-.vercel
+# bun
+/.bun
+/bun.lockb
+bun.lockb
+bun.lock
 
-/.vscode/
+# bun cache
+/.bun/cache
+
+# bun build cache
+/.bun/build

@@ -1,0 +1,40 @@
+# Backend/API TODOs
+
+- [ ] Refactor and document TRPC routers
+- [ ] Add more granular error handling and logging in API routes
+- [ ] Review and optimize Prisma schema and queries
+- [ ] Implement rate limiting and security checks for sensitive endpoints
+- [ ] Add tests for critical backend logic (auth, journal CRUD, etc)
+- [ ] Add API versioning and deprecation strategy
+- [ ] Implement audit logging for sensitive actions
+- [ ] Add support for 2FA and enhanced authentication
+- [ ] Improve JWT/session management and expiration
+- [ ] Add OpenAPI/Swagger documentation for API
+- [ ] Implement data export and import endpoints
+- [ ] Add admin/moderation endpoints for content review
+- [ ] Integrate with external mental health resources APIs
+- [ ] Add analytics and usage tracking (privacy-respecting)
+- [ ] Implement backup and restore endpoints for user data
+- [ ] Add support for webhooks and event-driven actions
+- [ ] Improve input validation and sanitization everywhere
+- [ ] Add support for localization/internationalization in API
+- [ ] Implement advanced search and filtering endpoints
+- [ ] Add support for file uploads and secure storage
+- [ ] Add AI-powered suggestions and moderation endpoints
+- [ ] Add mood analysis and journaling prompt endpoints
+- [ ] Add content warning and sensitive topic detection
+- [ ] Add end-to-end encryption for all private content
+- [ ] Add granular privacy controls for posts/journals
+- [ ] Add session management improvements and audit logging
+- [ ] Add 2FA and enhanced authentication endpoints
+- [ ] Add open API for third-party integrations
+- [ ] Add optional analytics (privacy-respecting)
+- [ ] Add third-party mental health resources API integration
+- [ ] Add advanced search and filtering endpoints
+- [ ] Add backup and restore endpoints for user data
+- [ ] Add support for webhooks and event-driven actions
+- [ ] Add advanced moderation tools for admins
+- [ ] Add localization/internationalization support in API
+- [ ] Add calendar integration endpoints for reminders
+- [ ] Add push notification endpoints
+- [ ] Add export/import endpoints for notes/journals
