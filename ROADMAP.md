@@ -4,9 +4,54 @@ This roadmap outlines planned features, improvements, and long-term goals for **
 
 ---
 
+## 🆕 Recently Released
+
+- **v1.1.0**:
+    - New changelog and planning structure
+    - Improved UI consistency and accessibility
+    - Initial groundwork for dark mode
+    - Full TODO breakdowns for all areas (see `.todo/` directory for detailed lists)
+    - Major code cleanup and type safety improvements
+    - **Expanded TODO lists:** Now tracking more granular UI/UX, features, backend, documentation, and devops tasks
+
+---
+
+## 📝 Expanded TODOs
+
+The `.todo/` directory has been significantly expanded to cover new and more detailed tasks across all areas:
+
+- **UI/UX:**
+    - Accessibility testing in CI
+    - Gamification, onboarding, journaling templates, voice journaling, localization, moderation UI, and more
+- **Features & Enhancements:**
+    - AI-powered moderation/content warnings
+    - Mood analysis and visualization
+    - Advanced moderation/admin tools
+    - Open API, webhooks, backup/restore, and more
+- **Backend/API:**
+    - End-to-end encryption
+    - Localization/internationalization
+    - Push notification endpoints
+    - Calendar/reminder integration
+    - Advanced search/filtering endpoints
+- **Documentation:**
+    - Accessibility/security docs
+    - Data export/import, backup/restore
+    - PWA, push notifications, privacy controls, and more
+- **DevOps:**
+    - Automated accessibility/performance testing
+    - Localization pipeline
+    - Staging/preview for mobile
+    - OpenAPI/Swagger automation
+    - Backup/restore for encrypted content
+
+See each `.todo/*.md` file for the full, up-to-date breakdown.
+
+---
+
 ## 🚀 Major Milestones
 
-- **v1.2.0**: Dark mode, improved accessibility, and search
+- **v1.2.0**: Dark mode (full), improved accessibility, and search
 - **v1.3.0**: Tagging, analytics dashboard, and notifications
 - **v1.4.0**: Reminders, attachments, and onboarding
 - **v2.0.0**: AI-powered suggestions, advanced moderation, and mobile app
@@ -19,6 +64,7 @@ This roadmap outlines planned features, improvements, and long-term goals for **
     - User-selectable dark/light mode
     - System preference detection
     - More theme backgrounds and color palettes
+    - _Note: Initial groundwork shipped in v1.1.0; full support coming in v1.2.0_
 
 - [ ] **Search & Filtering**
     - Search notes, journals, and users
@@ -107,6 +153,7 @@ This roadmap outlines planned features, improvements, and long-term goals for **
 - [ ] **Storybook for UI components**
 - [ ] **End-to-end and integration tests**
 - [ ] **Better error logging and monitoring (Sentry, LogRocket, etc.)**
+- [ ] **Maintain and expand area-specific TODO lists in `.todo/` for UI/UX, features, backend, docs, and devops**
 
 ---
 
@@ -116,6 +163,7 @@ This roadmap outlines planned features, improvements, and long-term goals for **
 - [ ] **API docs for developers**
 - [ ] **Contributor guide and code of conduct**
 - [ ] **Changelog automation**
+- [ ] **Keep `.todo/` lists up to date for all major areas**
 
 ---
 

@@ -20,3 +20,21 @@
 - [ ] Add support for localization/internationalization in API
 - [ ] Implement advanced search and filtering endpoints
 - [ ] Add support for file uploads and secure storage
+- [ ] Add AI-powered suggestions and moderation endpoints
+- [ ] Add mood analysis and journaling prompt endpoints
+- [ ] Add content warning and sensitive topic detection
+- [ ] Add end-to-end encryption for all private content
+- [ ] Add granular privacy controls for posts/journals
+- [ ] Add session management improvements and audit logging
+- [ ] Add 2FA and enhanced authentication endpoints
+- [ ] Add open API for third-party integrations
+- [ ] Add optional analytics (privacy-respecting)
+- [ ] Add third-party mental health resources API integration
+- [ ] Add advanced search and filtering endpoints
+- [ ] Add backup and restore endpoints for user data
+- [ ] Add support for webhooks and event-driven actions
+- [ ] Add advanced moderation tools for admins
+- [ ] Add localization/internationalization support in API
+- [ ] Add calendar integration endpoints for reminders
+- [ ] Add push notification endpoints
+- [ ] Add export/import endpoints for notes/journals

@@ -20,3 +20,23 @@
 - [ ] Add drag-and-drop reordering for journals/notes
 - [ ] Implement sticky navigation/menu for easier access
 - [ ] Add accessibility testing and validation in CI
+- [ ] Add onboarding & tutorial flow for new users (step-by-step, tooltips)
+- [ ] Add journaling templates and daily/weekly prompts
+- [ ] Add mood-based journaling suggestions
+- [ ] Add voice journaling and transcription UI
+- [ ] Add gamification elements (badges, achievements, streaks)
+- [ ] Add anonymous avatars and profile customization
+- [ ] Add localization and multi-language support UI
+- [ ] Add content warnings and moderation UI for sensitive topics
+- [ ] Add customizable journaling flows (gratitude, CBT, etc.)
+- [ ] Add markdown preview and formatting toolbar for notes/journals
+- [ ] Add export options (PDF, Markdown) for notes/journals
+- [ ] Add installable PWA banners and offline mode UI
+- [ ] Add push notification opt-in and settings UI
+- [ ] Add calendar picker for reminders and journaling streaks
+- [ ] Add advanced filtering and sorting for notes/journals
+- [ ] Add public journal sharing UI with unique links
+- [ ] Add comment/reaction system for public notes/journals
+- [ ] Add moderation dashboard UI for admins
+- [ ] Add community events/challenges UI
+- [ ] Add accessibility statement and feedback form

@@ -13,3 +13,14 @@
 - [ ] Document moderation and reporting workflows
 - [ ] Add documentation for third-party integrations and APIs
 - [ ] Maintain a roadmap and planning document (see `ROADMAP.md`)
+- [ ] Document onboarding & tutorial flow
+- [ ] Document journaling templates, prompts, and customizable flows
+- [ ] Document voice journaling and transcription features
+- [ ] Document gamification and achievement system
+- [ ] Document localization and multi-language support
+- [ ] Document moderation dashboard and workflows
+- [ ] Document API for third-party integrations
+- [ ] Document data export/import and backup/restore features
+- [ ] Document push notifications and PWA install process
+- [ ] Document privacy controls and encryption features
+- [ ] Document analytics and usage tracking (privacy-respecting)
