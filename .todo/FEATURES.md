@@ -1,0 +1,28 @@
+# Features & Enhancements TODO
+
+- [ ] Add search functionality for notes, journals, and users
+- [ ] Implement tagging and categorization for notes and journals
+- [ ] Add analytics dashboard for users (personal stats, streaks, etc)
+- [ ] Enable sharing of public journals/notes via unique links
+- [ ] Add notifications for comments, replies, and moderation actions
+- [ ] Implement scheduled reminders for journaling and goals
+- [ ] Add support for image/file attachments in journals and notes
+- [ ] Expand crisis resource database and localization
+- [ ] Add onboarding/tutorial flow for new users
+- [ ] Enable exporting data (notes, journals) as PDF/Markdown
+- [ ] Add more journaling templates and prompts
+- [ ] Integrate AI-powered suggestions for journaling and mood tracking
+- [ ] Add voice journaling and transcription
+- [ ] Implement anonymous peer support chat
+- [ ] Add gamification (badges, achievements, streaks)
+- [ ] Support multi-language/localization
+- [ ] Add calendar integration for reminders and journaling streaks
+- [ ] Implement advanced moderation tools for admins
+- [ ] Add public API for third-party integrations
+- [ ] Enable offline mode and PWA improvements
+- [ ] Add customizable journaling flows (gratitude, CBT, etc)
+- [ ] Add mood tracking and visualization
+- [ ] Implement user profile pages with anonymous avatars
+- [ ] Add comment/reaction system for public notes/journals
+- [ ] Add content warnings and moderation for sensitive topics
+- [ ] Integrate with third-party mental health resources

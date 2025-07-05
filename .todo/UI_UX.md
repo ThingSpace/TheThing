@@ -1,0 +1,22 @@
+# UI/UX TODOs
+
+- [ ] Implement full dark mode/theme switching (see `src/components/layout` and `tailwind.config.cjs`)
+- [ ] Refactor modal and box UI components for consistency (see `src/components/ui/EntryModal.tsx`, `src/components/ui/FeedbackModal.tsx`)
+- [ ] Improve accessibility (ARIA roles, keyboard navigation) in navigation and modal components (`src/components/ui/Navigation.tsx`, `src/components/ui/Menu.tsx`)
+- [ ] Audit and improve focus management for all modal/dialog components
+- [ ] Add visual feedback for async actions (loading, error, success states) in all forms and buttons
+- [ ] Add tooltips and contextual help for key actions and icons
+- [ ] Improve mobile responsiveness and touch interactions
+- [ ] Add high-contrast and dyslexia-friendly modes
+- [ ] Refine typography and spacing for better readability
+- [ ] Add animation and micro-interactions for transitions and feedback
+- [ ] Implement user onboarding and tutorial flow
+- [ ] Add keyboard shortcuts for common actions (e.g., new note, search)
+- [ ] Improve error and empty states with friendly messages and suggestions
+- [ ] Add user profile customization (anonymous avatars, theme preview)
+- [ ] Enhance journal and note editing experience (autosave, undo/redo)
+- [ ] Add markdown preview and formatting toolbar
+- [ ] Improve navigation for large numbers of notes/journals (pagination, infinite scroll)
+- [ ] Add drag-and-drop reordering for journals/notes
+- [ ] Implement sticky navigation/menu for easier access
+- [ ] Add accessibility testing and validation in CI

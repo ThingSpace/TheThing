@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { jwtVerify } from 'jose';
+import { jwtVerify } from 'jose'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
     // Fetch the cookies from the request containing our JWT.
-    const authCookie = request.cookies.get('token')?.value;
+    const authCookie = request.cookies.get('token')?.value
 
     // If the cookie is not present, redirect to '/auth/login'.
     if (!authCookie || authCookie.length === 0) {
@@ -13,9 +13,9 @@ export async function middleware(request: NextRequest) {
 
     // Validate the JWT token. If it is not valid, redirect to '/auth/login'.
     try {
-        await jwtVerify(authCookie, new TextEncoder().encode(process.env.JWT_SECRET!));
-    } catch (e) {
-        return NextResponse.redirect(new URL('/auth/login', request.url));
+        await jwtVerify(authCookie, new TextEncoder().encode(process.env.JWT_SECRET!))
+    } catch {
+        return NextResponse.redirect(new URL('/auth/login', request.url))
     }
 
     // If I have a cookie, but I navigate to /auth (after login from /app). Redirect back to /app. [Other case]
@@ -25,11 +25,10 @@ export async function middleware(request: NextRequest) {
     }
 
     // Yay! Cookie Present and valid. We can proceed to /app route and extract the token to fetch information.
-    return NextResponse.next();
-
+    return NextResponse.next()
 }
 
 // This will make sure our middleware only runs on /app/* route. (everything under /app including /app)
 export const config = {
-    matcher: ['/app/:path*', "/auth"],
+    matcher: ['/app/:path*', '/auth']
 }
