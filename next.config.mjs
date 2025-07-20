@@ -34,6 +34,9 @@ const config = {
 	reactStrictMode: false,
 	typescript: { ignoreBuildErrors: true },
 	eslint: { ignoreDuringBuilds: true },
+	images: {
+		domains: ['mymellow.space'],
+	},
 	async headers() {
 		return [
 			{
