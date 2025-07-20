@@ -37,7 +37,10 @@ export const mellowRouter = router({
                     errorText = await res.text()
                 } catch {}
                 console.error('Mellow API sendMessage error:', res.status, errorText)
-                throw new Error(`Failed to send message: ${res.status} ${errorText}`)
+                throw new TRPCError({
+                    code: 'BAD_REQUEST',
+                    message: `Failed to send message: ${res.status} ${errorText}`
+                })
             }
             const data = await res.json()
             return data
