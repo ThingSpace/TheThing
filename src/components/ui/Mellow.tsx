@@ -39,19 +39,25 @@ export default function MellowChat() {
         retry: false
     })
 
+    // Utility function to extract HTTP status from tRPC errors
+    function extractHttpStatus(error: unknown): number | undefined {
+        if (
+            error &&
+            typeof error === 'object' &&
+            error !== null &&
+            'data' in error &&
+            typeof (error as Record<string, unknown>).data === 'object' &&
+            (error as Record<string, unknown>).data !== null
+        ) {
+            return (error as { data: { httpStatus?: number } }).data.httpStatus;
+        }
+        return undefined;
+    }
+
     // Handle history fetch errors (ignore 404)
     useEffect(() => {
-        const err = getHistory.error as unknown
-        const httpStatus =
-            err &&
-            typeof err === 'object' &&
-            err !== null &&
-            'data' in err &&
-            typeof (err as Record<string, unknown>).data === 'object' &&
-            (err as Record<string, unknown>).data !== null
-                ? (err as { data: { httpStatus?: number } }).data.httpStatus
-                : undefined
-        if (err && httpStatus !== 404) {
+        const httpStatus = extractHttpStatus(getHistory.error);
+        if (getHistory.error && httpStatus !== 404) {
             // Optionally log or handle other errors
         }
     }, [getHistory.error])
