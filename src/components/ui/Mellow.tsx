@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
-import { TRPCClientError } from '@trpc/client'
 
 type Message = {
     role: 'assistant' | 'user'
@@ -42,8 +41,17 @@ export default function MellowChat() {
 
     // Handle history fetch errors (ignore 404)
     useEffect(() => {
-        const err = getHistory.error as TRPCClientError<unknown> | null
-        if (err && (err.data as { httpStatus?: number })?.httpStatus !== 404) {
+        const err = getHistory.error as unknown
+        const httpStatus =
+            err &&
+            typeof err === 'object' &&
+            err !== null &&
+            'data' in err &&
+            typeof (err as Record<string, unknown>).data === 'object' &&
+            (err as Record<string, unknown>).data !== null
+                ? (err as { data: { httpStatus?: number } }).data.httpStatus
+                : undefined
+        if (err && httpStatus !== 404) {
             // Optionally log or handle other errors
         }
     }, [getHistory.error])
