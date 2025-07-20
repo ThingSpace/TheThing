@@ -158,10 +158,8 @@ export const userRouter = router({
                 }
             } catch (error) {
                 console.error('Error during user signup:', error)
-                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'An error occurred while signing up.' })
-            } catch {
-                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'An error occurred while signing up.' })
                 // --todo-- add error logging to sentry
+                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'An error occurred while signing up.' })
             }
         }),
     update: protectedProcedure
