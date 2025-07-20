@@ -14,7 +14,10 @@ export const mellowRouter = router({
                 errorText = await res.text()
             } catch {}
             console.error('Mellow API session error:', res.status, errorText)
-            throw new Error(`Failed to create session: ${res.status} ${errorText}`)
+            throw new TRPCError({
+                code: 'INTERNAL_SERVER_ERROR',
+                message: `Failed to create session: ${res.status} ${errorText}`
+            })
         }
         const data = await res.json()
         return data.sessionId || data.id || data.session_id
