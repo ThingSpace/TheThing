@@ -49,14 +49,14 @@ export default function MellowChat() {
             typeof (error as Record<string, unknown>).data === 'object' &&
             (error as Record<string, unknown>).data !== null
         ) {
-            return (error as { data: { httpStatus?: number } }).data.httpStatus;
+            return (error as { data: { httpStatus?: number } }).data.httpStatus
         }
-        return undefined;
+        return undefined
     }
 
     // Handle history fetch errors (ignore 404)
     useEffect(() => {
-        const httpStatus = extractHttpStatus(getHistory.error);
+        const httpStatus = extractHttpStatus(getHistory.error)
         if (getHistory.error && httpStatus !== 404) {
             // Optionally log or handle other errors
         }
@@ -162,127 +162,133 @@ export default function MellowChat() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 pointer-events-auto z-[9998] bg-black/20 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none"
-                            onClick={toggleChat}
-                        />
-
-                        {/* Modal */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8, y: 100 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, y: 100 }}
-                            transition={{
-                                type: 'spring',
-                                damping: 25,
-                                stiffness: 300,
-                                duration: 0.4
-                            }}
-                            className="fixed inset-0 md:inset-auto md:bottom-24 md:left-6 pointer-events-auto z-[9999]"
+                            className="fixed inset-0 pointer-events-none z-[9998]"
                         >
-                            <div className="w-full h-full md:w-[500px] md:h-[600px] bg-clouds-pattern border-0 md:border-2 border-white rounded-none md:rounded-3xl shadow-2xl flex flex-col">
-                                {/* Header */}
-                                <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-700">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
-                                            <Image
-                                                src="https://mymellow.space/logo.png"
-                                                alt="Mellow Logo"
-                                                width={24}
-                                                height={24}
-                                                className="w-6 h-6 object-contain"
-                                            />
-                                        </div>
-                                        <h2 className="text-black font-mono text-lg md:text-xl font-bold">
-                                            Mellow Chat
-                                        </h2>
-                                    </div>
-                                    <button onClick={toggleChat} className="text-red transition-colors">
-                                        <X className="w-6 h-6" />
-                                    </button>
-                                </div>
-
-                                {/* Subtitle */}
-                                <div className="px-4 md:px-6 py-3 md:py-4 border-b border-gray-700">
-                                    <p className="text-gray font-mono text-xs md:text-sm">
-                                        Your AI-Powered Mental Health Companion for Athing
-                                    </p>
-                                </div>
-
-                                {/* Chat Area */}
-                                <div className="flex-1 p-4 md:p-6 bg-white/60 overflow-hidden">
-                                    <div
-                                        className="flex flex-col gap-3 md:gap-4 flex-1 overflow-y-auto pr-2"
-                                        style={{ maxHeight: '100%' }}
-                                    >
-                                        {messages.map((msg, idx) => (
-                                            <div
-                                                key={idx}
-                                                className={
-                                                    msg.role === 'user'
-                                                        ? 'self-end bg-blue-100 text-black px-3 md:px-4 py-2 rounded-2xl max-w-[85%] md:max-w-[80%] font-mono text-sm'
-                                                        : 'self-start bg-gray-200 text-gray-800 px-3 md:px-4 py-2 rounded-2xl max-w-[85%] md:max-w-[80%] font-mono text-sm'
-                                                }
-                                            >
-                                                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                            <div
+                                className="absolute bottom-5 right-5 w-[400px] pointer-events-auto"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                {/* Modal */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8, y: 100 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.8, y: 100 }}
+                                    transition={{
+                                        type: 'spring',
+                                        damping: 25,
+                                        stiffness: 300,
+                                        duration: 0.4
+                                    }}
+                                    className="fixed inset-0 md:inset-auto md:bottom-24 md:left-6 pointer-events-auto z-[9999]"
+                                >
+                                    <div className="w-full h-full md:w-[500px] md:h-[600px] bg-clouds-pattern border-0 md:border-2 border-white rounded-none md:rounded-3xl shadow-2xl flex flex-col">
+                                        {/* Header */}
+                                        <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-700">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                                                    <Image
+                                                        src="https://mymellow.space/logo.png"
+                                                        alt="Mellow Logo"
+                                                        width={24}
+                                                        height={24}
+                                                        className="w-6 h-6 object-contain"
+                                                    />
+                                                </div>
+                                                <h2 className="text-black font-mono text-lg md:text-xl font-bold">
+                                                    Mellow Chat
+                                                </h2>
                                             </div>
-                                        ))}
-                                        {loading && (
-                                            <div className="self-start text-gray-500 font-mono text-xs">
-                                                Mellow is typing...
-                                            </div>
-                                        )}
-                                        <div ref={messagesEndRef} />
-                                    </div>
-                                </div>
-
-                                {/* Footer */}
-                                <div className="p-4 md:p-6 border-t border-gray-700">
-                                    {/* Disclaimer Toggle */}
-                                    <div className="flex items-center justify-between mb-2">
-                                        <span className="text-gray-800 font-mono text-xs">Disclaimer</span>
-                                        <button
-                                            onClick={() => setShowDisclaimer(prev => !prev)}
-                                            className="text-xs font-mono text-blue-500 hover:underline"
-                                        >
-                                            {showDisclaimer ? 'Hide' : 'Show'}
-                                        </button>
-                                    </div>
-
-                                    {/* Disclaimer */}
-                                    {showDisclaimer && (
-                                        <p className="text-gray-800 font-mono text-xs mb-3 md:mb-4">
-                                            * Mellow is NOT a replacement for professional mental health care.
-                                            <br />
-                                            Always consult qualified mental health professionals for serious concerns.
-                                        </p>
-                                    )}
-
-                                    {/* Input Area */}
-                                    <form className="relative" onSubmit={handleSend} autoComplete="off">
-                                        <div className="border-2 border-gray-600 rounded-2xl p-3 md:p-4 flex items-center gap-2 md:gap-3 bg-white/80">
-                                            <input
-                                                type="text"
-                                                placeholder="Start typing...."
-                                                className="flex-1 bg-transparent text-black font-mono placeholder-gray-900 outline-none text-sm"
-                                                value={input}
-                                                onChange={handleInputChange}
-                                                disabled={loading}
-                                                autoFocus={isOpen}
-                                                onKeyDown={e => {
-                                                    if (e.key === 'Enter' && !e.shiftKey) handleSend(e)
-                                                }}
-                                            />
-                                            <button
-                                                type="submit"
-                                                className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors disabled:opacity-50"
-                                                disabled={loading || !input.trim()}
-                                                aria-label="Send"
-                                            >
-                                                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-black" />
+                                            <button onClick={toggleChat} className="text-red transition-colors">
+                                                <X className="w-6 h-6" />
                                             </button>
                                         </div>
-                                    </form>
-                                </div>
+
+                                        {/* Subtitle */}
+                                        <div className="px-4 md:px-6 py-3 md:py-4 border-b border-gray-700">
+                                            <p className="text-gray font-mono text-xs md:text-sm">
+                                                Your AI-Powered Mental Health Companion for Athing
+                                            </p>
+                                        </div>
+
+                                        {/* Chat Area */}
+                                        <div className="flex-1 p-4 md:p-6 bg-white/60 overflow-hidden">
+                                            <div
+                                                className="flex flex-col gap-3 md:gap-4 flex-1 overflow-y-auto pr-2"
+                                                style={{ maxHeight: '100%' }}
+                                            >
+                                                {messages.map((msg, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className={
+                                                            msg.role === 'user'
+                                                                ? 'self-end bg-blue-100 text-black px-3 md:px-4 py-2 rounded-2xl max-w-[85%] md:max-w-[80%] font-mono text-sm'
+                                                                : 'self-start bg-gray-200 text-gray-800 px-3 md:px-4 py-2 rounded-2xl max-w-[85%] md:max-w-[80%] font-mono text-sm'
+                                                        }
+                                                    >
+                                                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                                                    </div>
+                                                ))}
+                                                {loading && (
+                                                    <div className="self-start text-gray-500 font-mono text-xs">
+                                                        Mellow is typing...
+                                                    </div>
+                                                )}
+                                                <div ref={messagesEndRef} />
+                                            </div>
+                                        </div>
+
+                                        {/* Footer */}
+                                        <div className="p-4 md:p-6 border-t border-gray-700">
+                                            {/* Disclaimer Toggle */}
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-gray-800 font-mono text-xs">Disclaimer</span>
+                                                <button
+                                                    onClick={() => setShowDisclaimer(prev => !prev)}
+                                                    className="text-xs font-mono text-blue-500 hover:underline"
+                                                >
+                                                    {showDisclaimer ? 'Hide' : 'Show'}
+                                                </button>
+                                            </div>
+
+                                            {/* Disclaimer */}
+                                            {showDisclaimer && (
+                                                <p className="text-gray-800 font-mono text-xs mb-3 md:mb-4">
+                                                    * Mellow is <b>NOT</b> a replacement for professional mental health
+                                                    care.
+                                                    <br />
+                                                    Always consult qualified mental health professionals for serious
+                                                    concerns.
+                                                </p>
+                                            )}
+
+                                            {/* Input Area */}
+                                            <form className="relative" onSubmit={handleSend} autoComplete="off">
+                                                <div className="border-2 border-gray-600 rounded-2xl p-3 md:p-4 flex items-center gap-2 md:gap-3 bg-white/80">
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Start typing...."
+                                                        className="flex-1 bg-transparent text-black font-mono placeholder-gray-900 outline-none text-sm"
+                                                        value={input}
+                                                        onChange={handleInputChange}
+                                                        disabled={loading}
+                                                        autoFocus={isOpen}
+                                                        onKeyDown={e => {
+                                                            if (e.key === 'Enter' && !e.shiftKey) handleSend(e)
+                                                        }}
+                                                    />
+                                                    <button
+                                                        type="submit"
+                                                        className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors disabled:opacity-50"
+                                                        disabled={loading || !input.trim()}
+                                                        aria-label="Send"
+                                                    >
+                                                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-black" />
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </motion.div>
                             </div>
                         </motion.div>
                     </>

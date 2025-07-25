@@ -44,6 +44,7 @@ import { Customization } from '@components/ui/Customization'
 import { Settings } from '@components/ui/Settings'
 import getTheme from '@utils/PatternController'
 import { Confirm } from '@components/ui/Confirm'
+import Mellow from '@components/ui/Mellow'
 
 export default function AppPage() {
     const userInfoResponse = trpc.user.me.useQuery(void 0, {
@@ -98,6 +99,8 @@ export default function AppPage() {
                             )}
                         </AnimatePresence>
                     </motion.div>
+                    <Mellow />
+
                     <div key="actionButton" className="fixed bottom-10 right-10 flex flex-col">
                         {showActionWheel ? null : (
                             <Button

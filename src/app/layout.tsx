@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navigation } from '@components/ui/Static/Navigation'
-import Mellow from '@components/ui/Mellow'
 import '../styles/globals.css'
 import Providers from '@components/Providers'
 import RandomTitle from '@components/RandomTitle'
@@ -55,7 +54,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <Providers>
                     <Navigation />
                     <ClientSuspense>
-                        <Mellow />
                         <main>{children}</main>
                     </ClientSuspense>
                 </Providers>
